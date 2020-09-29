@@ -1,7 +1,4 @@
 public with sharing class strategicFinancialSolutions {
-    public strategicFinancialSolutions() {
-
-    }
     @AuraEnabled(cacheable=true)
     public static List<Object> fetchDataFromGithub(){
         HttpRequest req = new HttpRequest();
@@ -21,7 +18,5 @@ public with sharing class strategicFinancialSolutions {
         else{
             return null;
         }
-        
-        
     }
 }

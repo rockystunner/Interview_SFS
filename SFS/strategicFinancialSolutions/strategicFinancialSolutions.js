@@ -8,7 +8,10 @@ const columns = [
     { label: 'Min Pay%', fieldName: 'minPaymentPercentage', type: 'decimal' },
     { label: 'Balance', fieldName: 'balance', type: 'currency' },
 ];
-
+/*
+AREAS I TOOK TIME: push and pop doesnt kick in render action. 
+                   selectall is throwing an event but not able to render the value of selected rows
+*/
 export default class StrategicFinancialSolutions extends LightningElement {
     json_response = [];
     columns = columns;
@@ -16,7 +19,7 @@ export default class StrategicFinancialSolutions extends LightningElement {
     initialtotal;
     totaltodisplay;
     totalrows;
-    selectedrows;
+    selectedrows = 0;
     new_rows = [];
 
     @wire(fetchDataFromGithub)
@@ -29,7 +32,11 @@ export default class StrategicFinancialSolutions extends LightningElement {
         }
         else if (error) {
             this.error = error;
-
+            this.dispatchEvent(new ShowToastEvent({
+                title: 'Error',
+                message: 'Error Occurred while fetching github data',
+                variant: 'error'
+            }));
         }
     }
 
@@ -76,7 +83,7 @@ export default class StrategicFinancialSolutions extends LightningElement {
         else {
             this.totaltodisplay = this.initialtotal;
         }
-        var ldtable = this.template.querySelector('lightning-datatable');
+        let ldtable = this.template.querySelector('lightning-datatable');
         this.selectedRows = ldtable.getSelectedRows().length;
     }
 

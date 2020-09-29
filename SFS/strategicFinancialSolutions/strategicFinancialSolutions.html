@@ -1,5 +1,4 @@
 <template>
-
     <template if:true={json_response}>
         <div onclick={handleHeaderActions}>
             <lightning-datatable onrowselection={handleRowClicks} key-field="id" data={json_response} columns={columns}>
@@ -11,18 +10,14 @@
             <lightning-button onclick={removeItemsToTable} variant="brand" label="REMOVE DEBT"
                 class="slds-m-left_x-small">Add
             </lightning-button>
-
         </div>
-
         <lightning-card>
             <div style="background-color: #ABBAEA;font-size:20px;text-align: right;">
                 Total: <b>{totaltodisplay}</b>
             </div>
         </lightning-card>
-
         <div>
             Total Row Count: <b>{totalrows}</b> Check Row Count: <b>{selectedRows}</b>
         </div>
     </template>
-
 </template>
